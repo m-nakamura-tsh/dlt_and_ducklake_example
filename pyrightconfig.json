@@ -1,0 +1,42 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/pyright/main/packages/pyright/config.schema.json",
+
+  // プロジェクトのルート
+  "projectRoot": ".",
+
+  // フラットレイアウトなので "." を import の起点にする
+  "executionEnvironments": [
+    {
+      "root": ".",
+      "extraPaths": ["."]
+    }
+  ],
+
+  // 解析対象
+  "include": [
+    "*.py",
+    "**/*.py"
+  ],
+
+  // 解析対象外
+  "exclude": [
+    "**/__pycache__",
+    ".venv",
+    ".uv",
+    "dist",
+    "build"
+  ],
+
+  // 型チェックの厳しさ
+  "typeCheckingMode": "basic",
+
+  // uv が作る .venv を使う場合
+  "venvPath": ".",
+  "venv": ".venv",
+
+  // よくある警告調整
+  "reportMissingImports": true,
+  "reportMissingTypeStubs": false,
+  "reportUnusedImport": true
+}
+
