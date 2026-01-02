@@ -22,7 +22,11 @@ pattern = re.compile(
 def webaccess_data(
     source_data_path: Path = Path("./source_data/NASA_access_log_Jul95.gz"),
 ):
-    @dlt.resource(name="kennedy_space_center", write_disposition="merge", merge_key=['access_date'])
+    @dlt.resource(
+        name="kennedy_space_center",
+        write_disposition="merge",
+        merge_key=["access_date"],
+    )
     def kennedy_space_center_access():
         records = []
         # for line in StringIO(log_text):

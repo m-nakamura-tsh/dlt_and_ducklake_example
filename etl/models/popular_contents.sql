@@ -1,5 +1,5 @@
 MODEL (
-  name summary.kennedy_space_center,
+  name summary.kennedy_space_center_popular_contents,
   kind INCREMENTAL_BY_TIME_RANGE (
     time_column access_date,
     lookback 2,
@@ -9,13 +9,12 @@ MODEL (
 
 SELECT
     access_date,
-    COUNT(*)          AS request_count,
-    SUM(size)         AS total_bytes,
-    ROUND(SUM(size) / 1024.0 / 1024.0, 2) AS total_mb
+    path,
+    COUNT(*) AS request_count
 FROM my_lakehouse.my_lake_dataset.kennedy_space_center
 WHERE
   access_date BETWEEN @start_dt AND @end_dt
-GROUP BY access_date
-ORDER BY access_date
-
+GROUP BY access_date, path
+ORDER BY access_date, request_count DESC
+LIMIT 20;
 
